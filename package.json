@@ -4,14 +4,13 @@
   "description": "Basic template without hot reload",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
   },
   "author": "Willie Tong",
   "license": "MIT",
-  "scripts": {
-    "dev-start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js"
-  },
   "dependencies": {
+    "graphenejs-lib": "^0.5.2",
+    "graphenejs-ws": "^0.2.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

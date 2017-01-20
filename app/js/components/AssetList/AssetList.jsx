@@ -32,8 +32,8 @@ export default class AssetList extends Component {
         <h1>Asset List</h1>
         <ul>
           {
-            this.state.assets.map((asset, i) => {
-              return <li>{asset.symbol}</li>;
+            this.state.assets.map((asset) => {
+              return <li key={asset.dynamic_asset_data_id}>{asset.symbol}</li>;
             })
           }
         </ul>

@@ -9,12 +9,7 @@ let history = createBrowserHistory({ queryKey: false });
 
 export default class Main extends Component {
   render() {
-    let content = <div className="my-content">{this.props.children}</div>
-    return (
-      <div id='content-wrapper'>
-        {content}
-      </div>
-    );
+    return this.props.children;
   }
 }
 

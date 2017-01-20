@@ -1,5 +1,6 @@
-# React template
-This is a basic React project template that does not have hot-reload enabled.
+# Graphene Asset List
+This is a very simple page that displays the asset list from [OpenLedger](https://bitshares.openledger.info/) using the [Graphene Websocket library](https://www.npmjs.com/package/graphenejs-ws).
 
-# Reference
-https://stanko.github.io/setting-up-webpack-babel-and-react-from-scratch/
+# Notes
+* Using [react-router](https://react-router.now.sh/)
+  * The connection to the graphene websocket is established in the `onEnter` hook.

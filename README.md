@@ -1,5 +1,5 @@
-# Graphene Asset List
-This is a very simple page that displays the asset list from [OpenLedger](https://bitshares.openledger.info/) using the [Graphene Websocket library](https://www.npmjs.com/package/graphenejs-ws).
+# Graphene Asset Explorer
+Search and display information of the assets from [OpenLedger](https://bitshares.openledger.info/) using the [Graphene Websocket library](https://www.npmjs.com/package/graphenejs-ws).
 
 # Notes
 * Using [react-router](https://react-router.now.sh/)

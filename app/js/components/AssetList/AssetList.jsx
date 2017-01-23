@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Apis} from 'graphenejs-ws';
+import AssetDetail from './AssetDetail';
 
 export default class AssetList extends Component {
   constructor(props) {
@@ -47,18 +48,28 @@ export default class AssetList extends Component {
   }
 
   render() {
+    const styles = {
+      position: 'relative',
+      float: 'left'
+    }
+
     return (
-      <div className='asset_list'>
-        <h1>Asset List</h1>
-        <input type="text" value={this.state.searchText} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
-        <button type="button" onClick={this.handleSearch}>Search</button>
-        <ul>
-          {
-            this.state.assets.map((asset) => {
-              return <li key={asset.dynamic_asset_data_id}>{asset.symbol}</li>;
-            })
-          }
-        </ul>
+      <div>
+        <div id='asset_list' style={styles}>
+          <h1>Asset List</h1>
+          <input type="text" value={this.state.searchText} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
+          <button type="button" onClick={this.handleSearch}>Search</button>
+          <ul>
+            {
+              this.state.assets.map((asset) => {
+                return <li key={asset.dynamic_asset_data_id}>{asset.symbol}</li>;
+              })
+            }
+          </ul>
+        </div>
+        <div id='asset_detail'>
+          <AssetDetail />
+        </div>
       </div>
     );
   }

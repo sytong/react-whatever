@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {Router, Route, IndexRoute, Redirect} from "react-router";
 import createBrowserHistory from "history/lib/createHashHistory";
 import {Apis} from 'graphenejs-ws';
-import AssetList from './components/AssetList/AssetList';
+import AssetMain from './components/AssetList/AssetMain';
 
 let history = createBrowserHistory({ queryKey: false });
 
@@ -27,7 +27,7 @@ let initializer = (nextState, replaceState, callback) => {
 
 let routes = (
   <Route path="/" component={Main} onEnter={initializer}>
-    <IndexRoute component={AssetList}/>
+    <IndexRoute component={AssetMain}/>
   </Route>
 )
 

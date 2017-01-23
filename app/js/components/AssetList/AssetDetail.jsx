@@ -18,7 +18,7 @@ export default class AssetDetail extends Component {
   render() {
     return (
       <div id="asset_detail">
-        <h1>{this.state.asset.name}<h1>
+        <h1>{this.state.asset.name}</h1>
         <span>{this.state.asset.description}</span>
       </div>
     )

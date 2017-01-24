@@ -29,7 +29,9 @@ export default class AssetDetail extends Component {
 
     return (
       <div id="asset_detail" style={styles}>
-        <Asset data={this.state.asset} />
+        {this.state.asset.hasOwnProperty('symbol') &&
+            <Asset data={this.state.asset} />
+        }
       </div>
     )
   }

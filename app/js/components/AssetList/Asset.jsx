@@ -2,7 +2,7 @@ import React from 'react';
 
 function renderAsset(data) {
   // I can't find a better method yet
-  let rendered = [<tr><td colspan="2">{data.description}</td></tr>];
+  let rendered = [<tr><td colSpan="2">{data.description}</td></tr>];
   try {
     let obj = JSON.parse(data.description);
     const cell_styles = {
@@ -25,14 +25,20 @@ function renderAsset(data) {
 }
 
 module.exports = function Asset(props) {
-  console.log('Asset', props);
+  const data = props.data;
   return (
     <div>
-      <h1>{props.data.symbol}</h1>
+      <div>
+        <h1>{data.symbol}</h1>
+        <h4>openledger: <a target="_blank" href={`https://bitshares.openledger.info/#/asset/${data.symbol}`}>info</a>&nbsp;
+        <a target="_blank" href={`https://bitshares.openledger.info/#/market/${data.symbol}`}>market</a></h4>
+      </div>
       <table>
-        {
-          renderAsset(props.data).map((r) => { return r })
-        }
+        <tbody>
+          {
+            renderAsset(data).map((r) => { return r })
+          }
+        </tbody>
       </table>
     </div>
   )

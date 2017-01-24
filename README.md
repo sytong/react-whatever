@@ -4,3 +4,4 @@ Search and display information of the assets from [OpenLedger](https://bitshares
 # Notes
 * Using [react-router](https://react-router.now.sh/)
   * The connection to the graphene websocket is established in the `onEnter` hook.
+* The click handler on an Asset is passed from `AssetMain` to `AssetList` as a prop.

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {Apis} from 'graphenejs-ws';
+import Asset from './Asset';
 
 export default class AssetDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      asset: {
-        name: '',
-        description: ''
-      }
+      asset: {}
     }
   }
 
@@ -16,7 +14,9 @@ export default class AssetDetail extends Component {
     const asset = nextProps.asset;
     this.setState({
       asset: {
-        name: asset.symbol,
+        id: asset.id,
+        dynamic_asset_data_id: asset.dynamic_asset_data_id,
+        symbol: asset.symbol,
         description: asset.options.description
       }
     })
@@ -24,13 +24,12 @@ export default class AssetDetail extends Component {
 
   render() {
     const styles = {
-      width: '500px'
+      width: '800px'
     }
 
     return (
       <div id="asset_detail" style={styles}>
-        <h1>{this.state.asset.name}</h1>
-        <span>{this.state.asset.description}</span>
+        <Asset data={this.state.asset} />
       </div>
     )
   }

@@ -3,9 +3,18 @@ import AssetList from './AssetList';
 import AssetDetail from './AssetDetail';
 
 export default class AssetMain extends Component {
+  constructor() {
+    super();
+    this.state = {
+      asset: {}
+    };
+    this.onSelectAsset = this.onSelectAsset.bind(this);
+  }
 
-  onSelectAsset(event) {
-    console.log(event.target);
+  onSelectAsset(event, asset) {
+    this.setState({
+      asset: asset
+    });
     event.preventDefault();
   }
 
@@ -29,10 +38,10 @@ export default class AssetMain extends Component {
     return (
       <div id="asset_main" style={asset_main_style}>
         <div style={left_panel}>
-          <AssetList onSelectAsset={(event) => this.onSelectAsset(event)}/>
+          <AssetList onSelectAsset={this.onSelectAsset}/>
         </div>
         <div style={right_panel}>
-          <AssetDetail />
+          <AssetDetail asset={this.state.asset}/>
         </div>
       </div>
     )

@@ -6,18 +6,29 @@ export default class AssetDetail extends Component {
     super(props);
     this.state = {
       asset: {
-        id: 'ID',
-        name: 'NAME',
-        dynamic_asset_data_id: 'DYNAMIC ASSET DATA ID',
-        bitasset_data_id: 'BITASSET_DATA_ID',
-        description: "THIS IS A TEST"
+        name: '',
+        description: ''
       }
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const asset = nextProps.asset;
+    this.setState({
+      asset: {
+        name: asset.symbol,
+        description: asset.options.description
+      }
+    })
+  }
+
   render() {
+    const styles = {
+      width: '500px'
+    }
+
     return (
-      <div id="asset_detail">
+      <div id="asset_detail" style={styles}>
         <h1>{this.state.asset.name}</h1>
         <span>{this.state.asset.description}</span>
       </div>

@@ -58,7 +58,7 @@ export default class AssetList extends Component {
             this.state.assets.map((asset) => {
               return (
                 <li key={asset.dynamic_asset_data_id}>
-                  <a href="#" onClick={this.state.onSelectAsset}>{asset.symbol}</a>
+                  <a href="#" onClick={(event) => this.state.onSelectAsset(event, asset)}>{asset.symbol}</a>
                 </li>
               );
             })

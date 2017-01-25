@@ -2,18 +2,18 @@ import React from 'react';
 
 function renderAsset(data) {
   // I can't find a better method yet
-  let rendered = [<tr><td colSpan="2">{data.description}</td></tr>];
+  let rendered = [<tr key={`${data.id}`}><td key={`${data.id}_desc`} colSpan="2">{data.description}</td></tr>];
   try {
     let obj = JSON.parse(data.description);
     const cell_styles = {
       verticalAlign: 'initial',
       padding: '5px'
     }
-    rendered = Object.keys(obj).map((key) => {
+    rendered = Object.keys(obj).map((key, i) => {
       return (
-        <tr>
-          <td style={cell_styles}>{key}</td>
-          <td style={cell_styles}>{obj[key]}</td>
+        <tr key={`${data.id}_${i}`}>
+          <td key={`${data.id}_${key}`} style={cell_styles}>{key}</td>
+          <td key={`${data.id}_${key}_value`}style={cell_styles}>{obj[key]}</td>
         </tr>
       );
     });

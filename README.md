@@ -5,11 +5,11 @@ Search and display information of the assets from [OpenLedger](https://bitshares
 * git clone this repo
 * At repo root, `touch config.json`
 * Enter the following in `config.json` (or replace this default url with your own):
-  ```
+```
   {
     "ws_connection_string": "wss://bitshares.openledger.info/ws"
   }
-  ```
+```
 * `npm run dev-start`
 * Open Chrome and go to `http:\\localhost:8080`
 

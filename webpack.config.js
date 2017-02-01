@@ -27,5 +27,8 @@ module.exports = {
         loader: "json-loader"
       }
     ]
+  },
+  externals: {
+    'Config': JSON.stringify(require('./config.json'))
   }
 };

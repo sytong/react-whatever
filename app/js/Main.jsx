@@ -4,6 +4,7 @@ import {Router, Route, IndexRoute, Redirect} from "react-router";
 import createBrowserHistory from "history/lib/createHashHistory";
 import {Apis} from 'graphenejs-ws';
 import AssetMain from './components/AssetList/AssetMain';
+import Config from 'Config';
 
 let history = createBrowserHistory({ queryKey: false });
 
@@ -18,7 +19,7 @@ let updateListener = function(object) {
 }
 
 let initializer = (nextState, replaceState, callback) => {
-  Apis.instance("wss://bitshares.openledger.info/ws", true).init_promise.then((res) => {
+  Apis.instance(Config.ws_connection_string, true).init_promise.then((res) => {
     console.log("Connected to: ", res[0]);
     Apis.instance().db_api().exec("set_subscribe_callback", [updateListener, true]);
     return callback();

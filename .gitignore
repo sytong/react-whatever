@@ -38,3 +38,6 @@ jspm_packages
 
 # Webpack
 dist
+
+# Dev config
+config.json

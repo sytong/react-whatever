@@ -12,12 +12,13 @@ export default class AssetDetail extends Component {
 
   componentWillReceiveProps(nextProps) {
     const asset = nextProps.asset;
+    const description = asset.options == undefined ? '' : asset.options.description;
     this.setState({
       asset: {
         id: asset.id,
         dynamic_asset_data_id: asset.dynamic_asset_data_id,
         symbol: asset.symbol,
-        description: asset.options.description
+        description: description
       }
     })
   }

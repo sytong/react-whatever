@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Apis } from 'graphenejs-ws';
 
-export default class AssetList extends Component {
+class AssetList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,15 +16,14 @@ export default class AssetList extends Component {
   }
 
   componentWillMount() {
-    this._loadAssets('A', 100);
+    this.loadAssets('A', 100);
   }
 
-  _loadAssets(start, count) {
+  loadAssets(start, count) {
     Apis.instance().db_api().exec('list_assets', [start, count])
       .then((assets) => {
         this.state.assets = []; // have to clear the collection first
         assets.forEach((asset) => {
-          console.log(asset);
           const updated = this.state.assets.concat([asset]); // immutable!!
           this.setState({
             assets: updated,
@@ -39,12 +38,12 @@ export default class AssetList extends Component {
 
   handleKeyPress(event) {
     if (event.key === 'Enter') {
-      this._loadAssets(this.state.searchText, 100);
+      this.loadAssets(this.state.searchText, 100);
     }
   }
 
-  handleSearch(event) {
-    this._loadAssets(this.state.searchText, 100);
+  handleSearch() {
+    this.loadAssets(this.state.searchText, 100);
   }
 
   render() {
@@ -58,18 +57,24 @@ export default class AssetList extends Component {
         <button type='button' onClick={ this.handleSearch }>Search</button>
         <ul>
           {
-            this.state.assets.map((asset) => {
-              return (
+            this.state.assets.map(asset =>
+              (
                 <li key={ asset.dynamic_asset_data_id }>
-                  <a href='#' onClick={ (event) => { this.state.onSelectAsset(event, asset); } }>
+                  <a href='/' onClick={ (event) => { this.state.onSelectAsset(event, asset); } }>
                     { asset.symbol }
                   </a>
                 </li>
-              );
-            })
+              ),
+            )
           }
         </ul>
       </div>
     );
   }
 }
+
+AssetList.propTypes = {
+  onSelectAsset: PropTypes.func.isRequired,
+};
+
+export default AssetList;

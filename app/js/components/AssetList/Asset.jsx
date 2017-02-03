@@ -7,14 +7,14 @@ function renderAsset(id, symbol, description) {
   let rendered = [<tr key={ `${id}` }><td key={ `${id}_desc` } colSpan='2'>{ description }</td></tr>];
   try {
     const obj = JSON.parse(description);
-    rendered = Object.keys(obj).map((key) => {
-      return (
+    rendered = Object.keys(obj).map(key =>
+      (
         <tr key={ `${id}_${key}` }>
           <td key={ `${id}_${key}_name` } className='cell'>{key}</td>
           <td key={ `${id}_${key}_value` } className='cell'>{obj[key]}</td>
         </tr>
-      );
-    });
+      ),
+    );
   } catch (e) {
     // I got nothing to do here
   }

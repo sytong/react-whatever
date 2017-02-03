@@ -1,0 +1,24 @@
+.asset {
+  position: absolute;
+
+  > .left-panel {
+    position: relative;
+    float: left;
+    margin-left: 50px;
+  }
+
+  > .right-panel {
+    position: relative;
+    float: left;
+    margin-left: 100px;
+
+    .selected-asset {
+      width: 800px;
+
+      .cell {
+        vertical-align: initial;
+        padding: 5px;
+      }
+    }
+  }
+}

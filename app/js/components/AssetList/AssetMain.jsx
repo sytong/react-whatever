@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AssetList from './AssetList';
 import Asset from './Asset';
 
+require('./asset.scss');
+
 export default class AssetMain extends Component {
   constructor() {
     super();
@@ -19,33 +21,13 @@ export default class AssetMain extends Component {
   }
 
   render() {
-    const assetMainStyle = {
-      position: 'absolute',
-    };
-
-    const leftPanel = {
-      position: 'relative',
-      float: 'left',
-      marginLeft: '50px',
-    };
-
-    const rightPanel = {
-      position: 'relative',
-      float: 'left',
-      marginLeft: '100px',
-    };
-
-    const selectedAsset = {
-      width: '800px',
-    };
-
     return (
-      <div id='asset_main' style={ assetMainStyle }>
-        <div style={ leftPanel }>
+      <div className='asset'>
+        <div className='left-panel'>
           <AssetList onSelectAsset={ this.onSelectAsset } />
         </div>
-        <div style={ rightPanel }>
-          <div id='asset_detail' style={ selectedAsset }>
+        <div className='right-panel'>
+          <div className='selected-asset'>
             {Object.prototype.hasOwnProperty.call(this.state.asset, 'symbol') &&
               <Asset
                 id={ this.state.asset.id }

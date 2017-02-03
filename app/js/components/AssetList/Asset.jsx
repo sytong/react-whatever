@@ -1,19 +1,17 @@
 import React, { PropTypes } from 'react';
 
+require('./asset.scss');
+
 function renderAsset(id, symbol, description) {
   // I can't find a better method yet
   let rendered = [<tr key={ `${id}` }><td key={ `${id}_desc` } colSpan='2'>{ description }</td></tr>];
   try {
     const obj = JSON.parse(description);
-    const cellStyles = {
-      verticalAlign: 'initial',
-      padding: '5px',
-    };
-    rendered = Object.keys(obj).map((key, i) => {
+    rendered = Object.keys(obj).map((key) => {
       return (
-        <tr key={ `${id}_${i}` }>
-          <td key={ `${id}_${key}` } style={ cellStyles }>{key}</td>
-          <td key={ `${id}_${key}_value` }style={ cellStyles }>{obj[key]}</td>
+        <tr key={ `${id}_${key}` }>
+          <td key={ `${id}_${key}_name` } className='cell'>{key}</td>
+          <td key={ `${id}_${key}_value` } className='cell'>{obj[key]}</td>
         </tr>
       );
     });
@@ -45,16 +43,18 @@ const Asset = ({ id, symbol, description }) => (
         </a>
       </h4>
     </div>
-    <table>
-      <tbody>{ renderAsset(id, symbol, description) }</tbody>
-    </table>
+    <div className='attributes'>
+      <table>
+        <tbody>{ renderAsset(id, symbol, description) }</tbody>
+      </table>
+    </div>
   </div>
 );
 
 Asset.propTypes = {
   id: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
-  description: PropTypes.object,
+  description: PropTypes.string,
 };
 
 Asset.defaultProps = {

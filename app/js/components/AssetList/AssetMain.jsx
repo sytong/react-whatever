@@ -6,44 +6,44 @@ export default class AssetMain extends Component {
   constructor() {
     super();
     this.state = {
-      asset: {}
+      asset: {},
     };
     this.onSelectAsset = this.onSelectAsset.bind(this);
   }
 
   onSelectAsset(event, asset) {
     this.setState({
-      asset: asset
+      asset,
     });
     event.preventDefault();
   }
 
   render() {
-    const asset_main_style = {
-      position: 'absolute'
+    const assetMainStyle = {
+      position: 'absolute',
     };
 
-    const left_panel = {
+    const leftPanel = {
       position: 'relative',
       float: 'left',
-      marginLeft: '50px'
+      marginLeft: '50px',
     };
 
-    const right_panel = {
+    const rightPanel = {
       position: 'relative',
       float: 'left',
-      marginLeft: '100px'
+      marginLeft: '100px',
     };
 
     return (
-      <div id="asset_main" style={asset_main_style}>
-        <div style={left_panel}>
-          <AssetList onSelectAsset={this.onSelectAsset}/>
+      <div id='asset_main' style={ assetMainStyle }>
+        <div style={ leftPanel }>
+          <AssetList onSelectAsset={ this.onSelectAsset } />
         </div>
-        <div style={right_panel}>
-          <AssetDetail asset={this.state.asset}/>
+        <div style={ rightPanel }>
+          <AssetDetail asset={ this.state.asset } />
         </div>
       </div>
-    )
+    );
   }
 }

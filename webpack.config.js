@@ -1,34 +1,34 @@
 module.exports = {
-  context: __dirname + "/app",
+  context: __dirname + '/app',
   entry: {
-     javascript: "./js/app.js",
-     html: "./index.html",
-   },
+    javascript: './js/app.js',
+    html: './index.html',
+  },
   output: {
-    filename: "app.js",
-    path: __dirname + "/dist",
+    filename: 'app.js',
+    path: __dirname + '/dist',
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.js', '.jsx', '.json'],
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ["babel-loader"]
+        loaders: ['react-hot', 'babel-loader'],
       },
       {
         test: /\.html$/,
-        loader: "file?name=[name].[ext]",
+        loader: 'file?name=[name].[ext]',
       },
       {
         test: /\.json/,
-        loader: "json-loader"
-      }
-    ]
+        loader: 'json-loader',
+      },
+    ],
   },
   externals: {
-    'Config': JSON.stringify(require('./config.json'))
-  }
+    Config: JSON.stringify(require('./config.json')),
+  },
 };

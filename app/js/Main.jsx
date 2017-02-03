@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
-import {Router, Route, IndexRoute, Redirect} from "react-router";
-import createBrowserHistory from "history/lib/createHashHistory";
-import {Apis} from 'graphenejs-ws';
+import ReactDOM from 'react-dom';
+import { Router, Route, IndexRoute } from 'react-router';
+import createBrowserHistory from 'history/lib/createHashHistory';
+import { Apis } from 'graphenejs-ws';
 import AssetMain from './components/AssetList/AssetMain';
 import Config from 'Config';
 
-let history = createBrowserHistory({ queryKey: false });
+const history = createBrowserHistory({ queryKey: false });
 
 export default class Main extends Component {
   render() {
@@ -14,22 +14,22 @@ export default class Main extends Component {
   }
 }
 
-let updateListener = function(object) {
-  console.log("set_subscribe_callback:\n", object);
-}
+const updateListener = (object) => {
+  console.log('set_subscribe_callback:\n', object);
+};
 
-let initializer = (nextState, replaceState, callback) => {
+const initializer = (nextState, replaceState, callback) => {
   Apis.instance(Config.ws_connection_string, true).init_promise.then((res) => {
     console.log("Connected to: ", res[0]);
-    Apis.instance().db_api().exec("set_subscribe_callback", [updateListener, true]);
+    Apis.instance().db_api().exec('set_subscribe_callback', [updateListener, true]);
     return callback();
   });
-}
+};
 
-let routes = (
-  <Route path="/" component={Main} onEnter={initializer}>
-    <IndexRoute component={AssetMain}/>
+const routes = (
+  <Route path='/' component={ Main } onEnter={ initializer }>
+    <IndexRoute component={ AssetMain } />
   </Route>
-)
+);
 
-ReactDOM.render(<Router history={history} routes={routes}/>, document.getElementById("app"));
+ReactDOM.render(<Router history={ history } routes={ routes } />, document.getElementById('app'));

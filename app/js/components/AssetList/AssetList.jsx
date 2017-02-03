@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Apis} from 'graphenejs-ws';
+import { Apis } from 'graphenejs-ws';
 
 export default class AssetList extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class AssetList extends Component {
     this.state = {
       assets: [],
       searchText: '',
-      onSelectAsset: props.onSelectAsset
+      onSelectAsset: props.onSelectAsset,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,29 +16,29 @@ export default class AssetList extends Component {
   }
 
   componentWillMount() {
-    this._loadAssets("A", 100);
+    this._loadAssets('A', 100);
   }
 
   _loadAssets(start, count) {
-    Apis.instance().db_api().exec("list_assets", [start, count])
-      .then(assets => {
-        this.state.assets = []; //have to clear the collection first
-        assets.forEach(asset => {
+    Apis.instance().db_api().exec('list_assets', [start, count])
+      .then((assets) => {
+        this.state.assets = []; // have to clear the collection first
+        assets.forEach((asset) => {
           console.log(asset);
-          let updated = this.state.assets.concat([asset]); //immutable!!
+          const updated = this.state.assets.concat([asset]); // immutable!!
           this.setState({
-            assets: updated
+            assets: updated,
           });
-        })
+        });
       });
   }
 
   handleChange(event) {
-    this.setState({searchText: event.target.value});
+    this.setState({ searchText: event.target.value });
   }
 
   handleKeyPress(event) {
-    if (event.key == 'Enter') {
+    if (event.key === 'Enter') {
       this._loadAssets(this.state.searchText, 100);
     }
   }
@@ -51,14 +51,19 @@ export default class AssetList extends Component {
     return (
       <div id='asset_list'>
         <h1>Asset List</h1>
-        <input type="text" value={this.state.searchText} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
-        <button type="button" onClick={this.handleSearch}>Search</button>
+        <input
+          type='text' value={ this.state.searchText }
+          onChange={ this.handleChange } onKeyPress={ this.handleKeyPress }
+        />
+        <button type='button' onClick={ this.handleSearch }>Search</button>
         <ul>
           {
             this.state.assets.map((asset) => {
               return (
-                <li key={asset.dynamic_asset_data_id}>
-                  <a href="#" onClick={(event) => this.state.onSelectAsset(event, asset)}>{asset.symbol}</a>
+                <li key={ asset.dynamic_asset_data_id }>
+                  <a href='#' onClick={ (event) => { this.state.onSelectAsset(event, asset); } }>
+                    { asset.symbol }
+                  </a>
                 </li>
               );
             })

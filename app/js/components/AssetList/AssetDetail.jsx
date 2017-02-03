@@ -1,38 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Asset from './Asset';
 
-export default class AssetDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      asset: {},
-    };
-  }
+const AssetDetail = ({ asset }) => {
+  const styles = {
+    width: '800px',
+  };
 
-  componentWillReceiveProps(nextProps) {
-    const asset = nextProps.asset;
-    const description = asset.options === undefined ? '' : asset.options.description;
-    this.setState({
-      asset: {
-        id: asset.id,
-        dynamic_asset_data_id: asset.dynamic_asset_data_id,
-        symbol: asset.symbol,
-        description,
-      },
-    });
-  }
+  return (
+    <div id='asset_detail' style={ styles }>
+      {Object.prototype.hasOwnProperty.call(asset, 'symbol') &&
+        <Asset
+          id={ asset.id }
+          symbol={ asset.symbol }
+          description={ asset.options.description }
+        />
+      }
+    </div>
+  );
+};
 
-  render() {
-    const styles = {
-      width: '800px',
-    };
-
-    return (
-      <div id='asset_detail' style={ styles }>
-        {this.state.asset.hasOwnProperty('symbol') &&
-          <Asset data={ this.state.asset } />
-        }
-      </div>
-    );
-  }
-}
+export default AssetDetail;

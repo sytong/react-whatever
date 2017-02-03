@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-function renderAsset(data) {
+function renderAsset(id, symbol, description) {
   // I can't find a better method yet
-  let rendered = [<tr key={ `${data.id}` }><td key={ `${data.id}_desc` } colSpan='2'>{ data.description }</td></tr>];
+  let rendered = [<tr key={ `${id}` }><td key={ `${id}_desc` } colSpan='2'>{ description }</td></tr>];
   try {
-    const obj = JSON.parse(data.description);
+    const obj = JSON.parse(description);
     const cellStyles = {
       verticalAlign: 'initial',
       padding: '5px',
     };
     rendered = Object.keys(obj).map((key, i) => {
       return (
-        <tr key={ `${data.id}_${i}` }>
-          <td key={ `${data.id}_${key}` } style={ cellStyles }>{key}</td>
-          <td key={ `${data.id}_${key}_value` }style={ cellStyles }>{obj[key]}</td>
+        <tr key={ `${id}_${i}` }>
+          <td key={ `${id}_${key}` } style={ cellStyles }>{key}</td>
+          <td key={ `${id}_${key}_value` }style={ cellStyles }>{obj[key]}</td>
         </tr>
       );
     });
@@ -23,23 +23,42 @@ function renderAsset(data) {
   return rendered;
 }
 
-module.exports = function Asset(props) {
-  const data = props.data;
-  return (
+const Asset = ({ id, symbol, description }) => (
+  <div>
     <div>
-      <div>
-        <h1>{data.symbol}</h1>
-        <h4>openledger:
-          <a rel='noopener noreferrer' target='_blank' href={ `https://bitshares.openledger.info/#/asset/${data.symbol}` }>info</a>&nbsp;
-          <a rel='noopener noreferrer' target='_blank' href={ `https://bitshares.openledger.info/#/market/${data.symbol}` }>market</a></h4>
-      </div>
-      <table>
-        <tbody>
-          {
-            renderAsset(data)
-          }
-        </tbody>
-      </table>
+      <h1>{ symbol }</h1>
+      <h4>openledger:
+        <a
+          rel='noopener noreferrer'
+          target='_blank'
+          href={ `https://bitshares.openledger.info/#/asset/${symbol}` }
+        >
+          info
+        </a>
+        &nbsp;
+        <a
+          rel='noopener noreferrer'
+          target='_blank'
+          href={ `https://bitshares.openledger.info/#/market/${symbol}` }
+        >
+          market
+        </a>
+      </h4>
     </div>
-  );
+    <table>
+      <tbody>{ renderAsset(id, symbol, description) }</tbody>
+    </table>
+  </div>
+);
+
+Asset.propTypes = {
+  id: PropTypes.string.isRequired,
+  symbol: PropTypes.string.isRequired,
+  description: PropTypes.object,
 };
+
+Asset.defaultProps = {
+  description: {},
+};
+
+export default Asset;

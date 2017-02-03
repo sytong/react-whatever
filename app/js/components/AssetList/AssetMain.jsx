@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AssetList from './AssetList';
-import AssetDetail from './AssetDetail';
+import Asset from './Asset';
 
 export default class AssetMain extends Component {
   constructor() {
@@ -35,13 +35,25 @@ export default class AssetMain extends Component {
       marginLeft: '100px',
     };
 
+    const selectedAsset = {
+      width: '800px',
+    };
+
     return (
       <div id='asset_main' style={ assetMainStyle }>
         <div style={ leftPanel }>
           <AssetList onSelectAsset={ this.onSelectAsset } />
         </div>
         <div style={ rightPanel }>
-          <AssetDetail asset={ this.state.asset } />
+          <div id='asset_detail' style={ selectedAsset }>
+            {Object.prototype.hasOwnProperty.call(this.state.asset, 'symbol') &&
+              <Asset
+                id={ this.state.asset.id }
+                symbol={ this.state.asset.symbol }
+                description={ this.state.asset.options.description }
+              />
+            }
+          </div>
         </div>
       </div>
     );

@@ -58,7 +58,7 @@ Asset.propTypes = {
 };
 
 Asset.defaultProps = {
-  description: {},
+  description: '',
 };
 
 export default Asset;

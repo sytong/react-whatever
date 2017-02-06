@@ -10,7 +10,7 @@ Search and display information of the assets from [OpenLedger](https://bitshares
     "ws_connection_string": "wss://bitshares.openledger.info/ws"
   }
 ```
-* `npm run dev-start`
+* `npm run dev`
 * Open Chrome and go to `http:\\localhost:8080`
 
 # Notes

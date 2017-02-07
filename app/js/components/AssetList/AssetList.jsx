@@ -6,7 +6,6 @@ class AssetList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assets: [],
       onSelectAsset: props.onSelectAsset,
     };
   }
@@ -18,7 +17,7 @@ class AssetList extends Component {
         <AssetSearchForm />
         <ul>
           {
-            this.state.assets.map(asset =>
+            this.props.assets.map(asset =>
               (
                 <li key={ asset.dynamic_asset_data_id }>
                   <a href='/' onClick={ (event) => { this.state.onSelectAsset(event, asset); } }>

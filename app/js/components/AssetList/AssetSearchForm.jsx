@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchAssets } from '../../actions';
+import { listAssets } from '../../actions';
 
 
 const handleKeyPress = (event, dispatch, text) => {
   if (event.key === 'Enter') {
-    dispatch(searchAssets(text, 100));
+    dispatch(listAssets(text, 100));
   }
 };
 
 const handleSearch = (dispatch, text) => {
-  dispatch(searchAssets(text, 100));
+  dispatch(listAssets(text, 100));
 };
 
 const AssetSearchForm = ({ dispatch }) => {

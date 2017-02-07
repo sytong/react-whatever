@@ -18,3 +18,4 @@ Search and display information of the assets from [OpenLedger](https://bitshares
   * The connection to the graphene websocket is established in the `onEnter` hook.
 * The click handler on an Asset is passed from `AssetMain` to `AssetList` as a prop.
 * `Asset` is a functional component that only handles presentation logic.
+* Configured [this plugin](https://babeljs.io/docs/plugins/transform-object-rest-spread/) for babel.

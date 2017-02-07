@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import createBrowserHistory from 'history/lib/createHashHistory';
 import { Apis } from 'graphenejs-ws';
 import AssetMain from './components/AssetList/AssetMain';
+import reducer from './reducers';
 import Config from 'Config';
 
 const history = createBrowserHistory({ queryKey: false });
@@ -26,10 +30,19 @@ const initializer = (nextState, replaceState, callback) => {
   });
 };
 
+const middleware = [thunk];
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware),
+);
+
 const routes = (
   <Route path='/' component={ Main } onEnter={ initializer }>
     <IndexRoute component={ AssetMain } />
   </Route>
 );
 
-ReactDOM.render(<Router history={ history } routes={ routes } />, document.getElementById('app'));
+ReactDOM.render((
+  <Provider store={ store }>
+    <Router history={ history } routes={ routes } />
+  </Provider>), document.getElementById('app'));

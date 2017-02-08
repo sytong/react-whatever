@@ -1,12 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectAsset } from '../../actions';
-import AssetSearchForm from './AssetSearchForm';
 
 const AssetList = ({ assets, onSelectAsset }) => (
   <div id='asset_list'>
-    <h1>Asset List</h1>
-    <AssetSearchForm />
     <ul>
       {
         assets.map(asset =>

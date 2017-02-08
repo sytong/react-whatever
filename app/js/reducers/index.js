@@ -17,10 +17,20 @@ const assetList = (state = {
   }
 };
 
-const selectedAsset = (state = '', action) => {
+const selectedAsset = (state = {
+  id: '',
+  symbol: '',
+  description: '',
+}, action) => {
   switch (action.type) {
-    case SELECT_ASSET:
-      return action.asset;
+    case SELECT_ASSET: {
+      const { asset } = action;
+      return {
+        id: asset.id,
+        symbol: asset.symbol,
+        description: asset.options.description,
+      };
+    }
     default:
       return state;
   }

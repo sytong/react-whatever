@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 require('./asset.scss');
 
@@ -25,23 +26,25 @@ const Asset = ({ id, symbol, description }) => (
   <div>
     <div>
       <h1>{ symbol }</h1>
-      <h4>openledger:
-        <a
-          rel='noopener noreferrer'
-          target='_blank'
-          href={ `https://bitshares.openledger.info/#/asset/${symbol}` }
-        >
-          info
-        </a>
-        &nbsp;
-        <a
-          rel='noopener noreferrer'
-          target='_blank'
-          href={ `https://bitshares.openledger.info/#/market/${symbol}` }
-        >
-          market
-        </a>
-      </h4>
+      { symbol !== '' &&
+        <h4>openledger:
+          <a
+            rel='noopener noreferrer'
+            target='_blank'
+            href={ `https://bitshares.openledger.info/#/asset/${symbol}` }
+          >
+            info
+          </a>
+          &nbsp;
+          <a
+            rel='noopener noreferrer'
+            target='_blank'
+            href={ `https://bitshares.openledger.info/#/market/${symbol}` }
+          >
+            market
+          </a>
+        </h4>
+      }
     </div>
     <div className='attributes'>
       <table>
@@ -61,4 +64,14 @@ Asset.defaultProps = {
   description: '',
 };
 
-export default Asset;
+const mapStateToProps = (state) => {
+  const { selectedAsset } = state;
+  return {
+    id: selectedAsset.id,
+    symbol: selectedAsset.symbol,
+    description: selectedAsset.description,
+  };
+};
+
+
+export default connect(mapStateToProps)(Asset);

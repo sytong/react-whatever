@@ -1,39 +1,31 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { selectAsset } from '../../actions';
 import AssetSearchForm from './AssetSearchForm';
 
-class AssetList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onSelectAsset: props.onSelectAsset,
-    };
-  }
+const AssetList = ({ assets, onSelectAsset }) => (
+  <div id='asset_list'>
+    <h1>Asset List</h1>
+    <AssetSearchForm />
+    <ul>
+      {
+        assets.map(asset =>
+          (
+            <li key={ asset.dynamic_asset_data_id }>
+              <a href='#' onClick={ () => onSelectAsset(asset) }>
+                { asset.symbol }
+              </a>
+            </li>
+          ),
+        )
+      }
+    </ul>
+  </div>
+);
 
-  render() {
-    return (
-      <div id='asset_list'>
-        <h1>Asset List</h1>
-        <AssetSearchForm />
-        <ul>
-          {
-            this.props.assets.map(asset =>
-              (
-                <li key={ asset.dynamic_asset_data_id }>
-                  <a href='/' onClick={ (event) => { this.state.onSelectAsset(event, asset); } }>
-                    { asset.symbol }
-                  </a>
-                </li>
-              ),
-            )
-          }
-        </ul>
-      </div>
-    );
-  }
-}
 
 AssetList.propTypes = {
+  assets: PropTypes.array.isRequired,
   onSelectAsset: PropTypes.func.isRequired,
 };
 
@@ -44,4 +36,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AssetList);
+const mapDispatchToProps = dispatch => (
+  {
+    onSelectAsset: (asset) => {
+      dispatch(selectAsset(asset));
+    },
+  }
+);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(AssetList);

@@ -16,6 +16,6 @@ Search and display information of the assets from [OpenLedger](https://bitshares
 # Notes
 * Using [react-router](https://react-router.now.sh/)
   * The connection to the graphene websocket is established in the `onEnter` hook.
-* The click handler on an Asset is passed from `AssetMain` to `AssetList` as a prop.
-* `Asset` is a functional component that only handles presentation logic.
+* Only functional components are used.
+* `Asset` and `AssetList` are connected to the Redux store and they managed their own state-to-props mapping. `AssetMain` has become a purely presentational component that hosts both `Asset` and `AssetList`. This may not be a good design though.
 * Configured [this plugin](https://babeljs.io/docs/plugins/transform-object-rest-spread/) for babel.

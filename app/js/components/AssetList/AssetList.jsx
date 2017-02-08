@@ -12,7 +12,7 @@ const AssetList = ({ assets, onSelectAsset }) => (
         assets.map(asset =>
           (
             <li key={ asset.dynamic_asset_data_id }>
-              <a href='#' onClick={ () => onSelectAsset(asset) }>
+              <a href='/' onClick={ event => onSelectAsset(event, asset) }>
                 { asset.symbol }
               </a>
             </li>
@@ -38,7 +38,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => (
   {
-    onSelectAsset: (asset) => {
+    onSelectAsset: (event, asset) => {
+      event.preventDefault();
       dispatch(selectAsset(asset));
     },
   }

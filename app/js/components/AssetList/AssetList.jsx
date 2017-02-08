@@ -22,7 +22,7 @@ const AssetList = ({ assets, onSelectAsset }) => (
 
 
 AssetList.propTypes = {
-  assets: PropTypes.array.isRequired,
+  assets: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelectAsset: PropTypes.func.isRequired,
 };
 

@@ -37,8 +37,11 @@ AssetList.propTypes = {
   onSelectAsset: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  assets: state.items,
-});
+const mapStateToProps = (state) => {
+  const { assetList } = state;
+  return {
+    assets: assetList.items,
+  };
+};
 
 export default connect(mapStateToProps)(AssetList);

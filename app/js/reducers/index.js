@@ -1,15 +1,12 @@
+import { combineReducers } from 'redux';
 import {
-  SEARCH_ASSETS, RECEIVE_ASSETS,
+  RECEIVE_ASSETS, SELECT_ASSET,
 } from '../actions';
 
-const assets = (state = {
+const assetList = (state = {
   items: [],
 }, action) => {
   switch (action.type) {
-    case SEARCH_ASSETS:
-      return {
-        ...state,
-      };
     case RECEIVE_ASSETS:
       return {
         ...state,
@@ -20,4 +17,19 @@ const assets = (state = {
   }
 };
 
-export default assets;
+const selectedAsset = (state = '', action) => {
+  switch (action.type) {
+    case SELECT_ASSET:
+      return action.asset;
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  assetList,
+  selectedAsset,
+});
+
+
+export default rootReducer;

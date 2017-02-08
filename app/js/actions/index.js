@@ -1,18 +1,17 @@
 import { Apis } from 'graphenejs-ws';
 
-export const SEARCH_ASSETS = 'SEARCH_ASSETS';
 export const RECEIVE_ASSETS = 'RECEIVE_ASSETS';
-
-export const searchAssets = (symbol, count) => ({
-  type: SEARCH_ASSETS,
-  symbol,
-  count,
-});
+export const SELECT_ASSET = 'SELECT_ASSET';
 
 export const receiveAssets = (symbol, assets) => ({
   type: RECEIVE_ASSETS,
   symbol,
   assets,
+});
+
+export const selectAsset = asset => ({
+  type: SELECT_ASSET,
+  asset,
 });
 
 export const listAssets = (symbol, count) => (dispatch) => {

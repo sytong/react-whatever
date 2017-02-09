@@ -1,11 +1,11 @@
 module.exports = {
   context: __dirname + "/app",
   entry: {
-     javascript: "./js/app.js",
+     javascript: "./main.js",
      html: "./index.html",
    },
   output: {
-    filename: "app.js",
+    filename: "main.js",
     path: __dirname + "/dist",
   },
   resolve: {
@@ -16,7 +16,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ["babel-loader"]
+        loaders: ["react-hot", "babel-loader"]
       },
       {
         test: /\.html$/,
